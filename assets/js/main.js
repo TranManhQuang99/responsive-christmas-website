@@ -128,24 +128,53 @@ sr.reveal(`.giving__content, .gift__card`,{interval: 100})
 sr.reveal(`.celebrate__data, .message__form, .footer__img1`,{origin: 'left'})
 sr.reveal(`.celebrate__img, .message__img, .footer__img2`,{origin: 'right'})
 
-// POPUP
-const surpriseGift = document.getElementById('surprise-gift')
-const popup = document.getElementById('gift-popup')
-const popupClose = document.getElementById('popup-close')
+// Lấy các phần tử DOM
+const surpriseGift = document.getElementById('surprise-gift');
+const giftImage = surpriseGift.querySelector('.giving__img');
+const giftPopup = document.getElementById('gift-popup');
+const popupClose = document.getElementById('popup-close');
 
-// Hiển thị popup khi click vào surprise gift
-surpriseGift.addEventListener('click', () => {
-    popup.style.display = 'flex'
-})
+// Kiểm tra xem các phần tử có được tìm thấy không
+console.log('surpriseGift:', surpriseGift);
+console.log('giftImage:', giftImage);
+console.log('giftPopup:', giftPopup);
+console.log('popupClose:', popupClose);
 
-// Đóng popup
-popupClose.addEventListener('click', () => {
-    popup.style.display = 'none'
-})
+// Hàm hiển thị popup
+function showPopup() {
+    console.log('Showing popup'); // Thêm log
+    giftPopup.style.display = 'flex';
+}
+
+// Hàm ẩn popup
+function hidePopup() {
+    console.log('Hiding popup'); // Thêm log
+    giftPopup.style.display = 'none';
+}
+
+// Thêm sự kiện click cho phần tử surprise gift và hình ảnh
+surpriseGift.addEventListener('click', (e) => {
+    console.log('Clicked on surprise gift'); // Thêm log
+    showPopup();
+});
+
+giftImage.addEventListener('click', (e) => {
+    console.log('Clicked on gift image'); // Thêm log
+    e.stopPropagation(); // Ngăn sự kiện nổi bọt
+    showPopup();
+});
+
+// Thêm sự kiện click cho nút đóng popup
+popupClose.addEventListener('click', (e) => {
+    console.log('Clicked on close button'); // Thêm log
+    e.stopPropagation();
+    hidePopup();
+});
 
 // Đóng popup khi click bên ngoài
-popup.addEventListener('click', (e) => {
-    if (e.target === popup) {
-        popup.style.display = 'none'
+giftPopup.addEventListener('click', function(e) {
+    if (e.target === giftPopup) {
+        console.log('Clicked outside popup'); // Thêm log
+        hidePopup();
     }
-})
+});
