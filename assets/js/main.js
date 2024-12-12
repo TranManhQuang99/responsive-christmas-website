@@ -127,3 +127,25 @@ sr.reveal(`.home__data`, {delay: 500})
 sr.reveal(`.giving__content, .gift__card`,{interval: 100})
 sr.reveal(`.celebrate__data, .message__form, .footer__img1`,{origin: 'left'})
 sr.reveal(`.celebrate__img, .message__img, .footer__img2`,{origin: 'right'})
+
+// POPUP
+const surpriseGift = document.getElementById('surprise-gift')
+const popup = document.getElementById('gift-popup')
+const popupClose = document.getElementById('popup-close')
+
+// Hiển thị popup khi click vào surprise gift
+surpriseGift.addEventListener('click', () => {
+    popup.style.display = 'flex'
+})
+
+// Đóng popup
+popupClose.addEventListener('click', () => {
+    popup.style.display = 'none'
+})
+
+// Đóng popup khi click bên ngoài
+popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        popup.style.display = 'none'
+    }
+})
